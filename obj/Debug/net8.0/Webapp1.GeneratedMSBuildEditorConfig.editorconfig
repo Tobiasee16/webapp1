@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/tobiasengedalek/Documents/Vscode.Prosjekt/KartverketProsjekt
 build_property._RazorSourceGeneratorDebug = 
 
+[/Users/tobiasengedalek/Documents/Vscode.Prosjekt/KartverketProsjekt/Views/AdminInnmeldinger/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW5Jbm5tZWxkaW5nZXIvQWRkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/tobiasengedalek/Documents/Vscode.Prosjekt/KartverketProsjekt/Views/AdminTags/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW5UYWdzL0FkZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
