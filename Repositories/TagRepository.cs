@@ -1,32 +1,64 @@
 using Webapp1.Models.Domain;
+using Webapp1.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Webapp1.Repositories
 {
-    public class TagRepository : ITagInterface
+    public class TagRepository : ITagRepository
     {
-        public Task<Tag> AddAsync(Tag tag)
+        private readonly Webapp1DbContext webapp1DbContext;
+
+        public TagRepository(Webapp1DbContext webapp1DbContext) 
         {
-            throw new NotImplementedException();
+            this.webapp1DbContext = webapp1DbContext;
+        }
+        public async Task<Tag> AddAsync(Tag tag)
+        {
+            await webapp1DbContext.Tags.AddAsync(tag);
+            await webapp1DbContext.SaveChangesAsync();
+            return tag; 
         }
 
-        public Task<Tag?> DeleteAsync(Guid id)
+        public async Task<Tag?> DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var existingTag = await webapp1DbContext.Tags.FindAsync(id);
+            if (existingTag != null)
+            {
+                webapp1DbContext.Tags.Remove(existingTag);
+                await webapp1DbContext.SaveChangesAsync();
+                return existingTag;
+            }
+            return null;
         }
 
-        public Task<IEnumerable<Tag>> GetAllAsync()
+        public async Task<IEnumerable<Tag>> GetAllAsync()
         {
-            throw new NotImplementedException();
+           return await webapp1DbContext.Tags.ToListAsync();
         }
 
-        public Task<Tag?> GetByIdAsync(Guid id)
+        public Task<Tag?> GetAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return webapp1DbContext.Tags.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task<Tag?> UpdateAsync(Tag tag)
+        public async Task<Tag?> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await webapp1DbContext.Tags.FindAsync(id);
+        }
+
+        public async Task<Tag?> UpdateAsync(Tag tag)
+        {
+            var existingTag = await webapp1DbContext.Tags.FindAsync(tag.Id);
+            if (existingTag != null)
+            {
+                existingTag.Name = tag.Name;
+                existingTag.DisplayName = tag.DisplayName;
+
+                await webapp1DbContext.SaveChangesAsync();
+
+                return existingTag;
+            }
+            return null;
         }
     }
 }

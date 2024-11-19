@@ -1,28 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\theod\\OneDrive\\Dokumenter\\GitHub\\uia-worker\\webapp1\\Webapp1.csproj": {}
+    "/Users/tobiasengedalek/Documents/Vscode.Prosjekt/KartverketProsjekt/Webapp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\theod\\OneDrive\\Dokumenter\\GitHub\\uia-worker\\webapp1\\Webapp1.csproj": {
+    "/Users/tobiasengedalek/Documents/Vscode.Prosjekt/KartverketProsjekt/Webapp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\theod\\OneDrive\\Dokumenter\\GitHub\\uia-worker\\webapp1\\Webapp1.csproj",
+        "projectUniqueName": "/Users/tobiasengedalek/Documents/Vscode.Prosjekt/KartverketProsjekt/Webapp1.csproj",
         "projectName": "Webapp1",
-        "projectPath": "C:\\Users\\theod\\OneDrive\\Dokumenter\\GitHub\\uia-worker\\webapp1\\Webapp1.csproj",
-        "packagesPath": "C:\\Users\\theod\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\theod\\OneDrive\\Dokumenter\\GitHub\\uia-worker\\webapp1\\obj\\",
+        "projectPath": "/Users/tobiasengedalek/Documents/Vscode.Prosjekt/KartverketProsjekt/Webapp1.csproj",
+        "packagesPath": "/Users/tobiasengedalek/.nuget/packages/",
+        "outputPath": "/Users/tobiasengedalek/Documents/Vscode.Prosjekt/KartverketProsjekt/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\theod\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/tobiasengedalek/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -46,6 +43,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[8.0.0, )"
@@ -76,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

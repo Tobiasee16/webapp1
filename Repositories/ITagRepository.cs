@@ -2,7 +2,7 @@ using Webapp1.Models.Domain;
 
 namespace Webapp1.Repositories
 {
-    public interface ITagInterface
+    public interface ITagRepository
     {
        Task<IEnumerable<Tag>> GetAllAsync();
 
