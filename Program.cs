@@ -11,6 +11,8 @@ builder.Services.AddDbContext<Webapp1DbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("Webapp1DbConnectionString")));
 
 builder.Services.AddScoped<ITagRepository, TagRepository>();
+builder.Services.AddScoped<IInnmeldingerRepository, InnmeldingerRepository>();
+builder.Services.AddScoped<IImageRepository, CloudinaryImageRepository>();
 
 var app = builder.Build();
 
