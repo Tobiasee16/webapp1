@@ -17,6 +17,16 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("Webapp1AuthDbCon
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
    .AddEntityFrameworkStores<AuthDbContext>();
 
+builder.Services.Configure<IdentityOptions>(Options => 
+{
+    Options.Password.RequireDigit = true;
+    Options.Password.RequireLowercase = true;
+    Options.Password.RequireUppercase = true;
+    Options.Password.RequireNonAlphanumeric = true;
+    Options.Password.RequiredLength = 6;
+    Options.Password.RequiredUniqueChars = 1;
+});
+
 builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<IInnmeldingerRepository, InnmeldingerRepository>();
 builder.Services.AddScoped<IImageRepository, CloudinaryImageRepository>();

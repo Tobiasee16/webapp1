@@ -5,7 +5,7 @@ namespace   Webapp1.Data
 {
     public class Webapp1DbContext : DbContext
     {
-        public Webapp1DbContext(DbContextOptions options) : base(options)
+        public Webapp1DbContext(DbContextOptions<Webapp1DbContext> options) : base(options)
         {
         }
 
