@@ -56,8 +56,40 @@ namespace Webapp1.Data
                 NormalizedUserName = "engedaltobias@gmail.com".ToUpper(),
                 Id = superAdminId
 
-            //Add All roles to SuperAdmin
-        }
+            };
 
+            superAdminUser.PasswordHash = new PasswordHasher<IdentityUser>()
+                 .HashPassword(superAdminUser, "SuperAdmin123!");
+
+            builder.Entity<IdentityUser>().HasData(superAdminUser);
+
+            //Add All roles to SuperAdminUser
+
+            var superAdminRoles = new List<IdentityUserRole<string>>
+            {
+                new IdentityUserRole<string>
+                {
+                    RoleId = adminRoleId,
+                    UserId = superAdminId
+                },
+
+                new IdentityUserRole<string>
+                {
+                    RoleId = superAdminRoleId,
+                    UserId = superAdminId
+                },
+
+                new IdentityUserRole<string>
+                {
+                    RoleId = userRoleId,
+                    UserId = superAdminId
+                }
+            
+            };
+
+            builder.Entity<IdentityUserRole<string>>().HasData(superAdminRoles);
+        
+
+        }
     }
-}
+} 
