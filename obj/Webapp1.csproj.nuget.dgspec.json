@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/tobiasengedalek/Documents/Vscode.Prosjekt/KartverketProsjekt/Webapp1.csproj": {}
+    "/Users/tobiasengedalek/Documents/Vscode.Prosjekt/Webapp1/Webapp1.csproj": {}
   },
   "projects": {
-    "/Users/tobiasengedalek/Documents/Vscode.Prosjekt/KartverketProsjekt/Webapp1.csproj": {
+    "/Users/tobiasengedalek/Documents/Vscode.Prosjekt/Webapp1/Webapp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/tobiasengedalek/Documents/Vscode.Prosjekt/KartverketProsjekt/Webapp1.csproj",
+        "projectUniqueName": "/Users/tobiasengedalek/Documents/Vscode.Prosjekt/Webapp1/Webapp1.csproj",
         "projectName": "Webapp1",
-        "projectPath": "/Users/tobiasengedalek/Documents/Vscode.Prosjekt/KartverketProsjekt/Webapp1.csproj",
+        "projectPath": "/Users/tobiasengedalek/Documents/Vscode.Prosjekt/Webapp1/Webapp1.csproj",
         "packagesPath": "/Users/tobiasengedalek/.nuget/packages/",
-        "outputPath": "/Users/tobiasengedalek/Documents/Vscode.Prosjekt/KartverketProsjekt/obj/",
+        "outputPath": "/Users/tobiasengedalek/Documents/Vscode.Prosjekt/Webapp1/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/tobiasengedalek/.nuget/NuGet/NuGet.Config"
@@ -46,6 +46,10 @@
             "CloudinaryDotNet": {
               "target": "Package",
               "version": "[1.26.2, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
