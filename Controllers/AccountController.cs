@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Webapp1.Models.ViewModels;
+
 namespace Webapp1.Controllers
 {
     public class AccountController : Controller
@@ -46,8 +47,12 @@ namespace Webapp1.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Login(string returnUrl)
         {
+            var model = new LoginViewModel
+            {
+                ReturnUrl = returnUrl
+            };
             return View();
         }
         [HttpPost]
@@ -58,6 +63,11 @@ namespace Webapp1.Controllers
 
             if (signInResult != null && signInResult.Succeeded)
             {
+
+                if (!string.IsNullOrWhiteSpace(loginViewModel.ReturnUrl))
+                {
+                    return RedirectToPage(loginViewModel.ReturnUrl);
+                }
                 return RedirectToAction("Index", "Home");
             }
             //show error message
@@ -69,6 +79,12 @@ namespace Webapp1.Controllers
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }

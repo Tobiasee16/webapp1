@@ -50,10 +50,10 @@ namespace Webapp1.Data
             var superAdminId = "1316EE9B-C58E-4D1C-ACB2-AF681EFA267B";
             var superAdminUser = new IdentityUser
             {
-                UserName = "engedaltobias@gmail.com",
-                Email = "engedaltobias@gmail.com",
-                NormalizedEmail = "engedaltobias@gmail.com".ToUpper(),
-                NormalizedUserName = "engedaltobias@gmail.com".ToUpper(),
+                UserName = "superadmin@kartverket.com",
+                Email = "superadmin@kartverket.com",
+                NormalizedEmail = "superadmin@kartverket.com".ToUpper(),
+                NormalizedUserName = "superadmin@kartverket.com".ToUpper(),
                 Id = superAdminId
 
             };
