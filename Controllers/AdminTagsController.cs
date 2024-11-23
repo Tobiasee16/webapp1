@@ -4,6 +4,7 @@ using Webapp1.Models.ViewModels;
 using Webapp1.Models.Domain;
 using Microsoft.EntityFrameworkCore;
 using Webapp1.Repositories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Webapp1.Controllers
 {
@@ -11,10 +12,12 @@ namespace Webapp1.Controllers
     {
         private readonly ITagRepository tagRepository;
         public AdminTagsController(ITagRepository tagRepository)
+
         {
             this.tagRepository = tagRepository;
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Add()
         {
