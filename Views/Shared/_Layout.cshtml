@@ -27,7 +27,6 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
 
                         @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                         {
@@ -38,32 +37,49 @@
           <ul class="dropdown-menu">
             <li>
                 <a class="dropdown-item"  
+            asp-area=""
             asp-controller="AdminTags"
             asp-action="Add">
-            Add Tag</a>
+            Add Tag
+            </a>
             </li>
 
-             <li>
-                <a class="dropdown-item" 
-            asp-controller="AdminTags"
-            asp-action="List">
-            Show All Tags</a>
-            </li>
-          </ul>
-        </li>
  <li>
+    <a class="dropdown-item" 
+asp-area=""
+asp-controller="AdminTags"
+asp-action="List">
+Show All Tags
+</a>
+</li>
+<li>
+    <a class="dropdown-item" 
+asp-area=""
+asp-controller="AdminInnmeldinger"
+asp-action="Add">
+Legg til Innmelding
+</a>
+</li>
+
+             <li>
                 <a class="dropdown-item" 
+            asp-area=""
             asp-controller="AdminInnmeldinger"
-            asp-action="Add">
-            Legg til Innmelding</a>
+            asp-action="List">
+            Alle innmeldinger
+            </a>
             </li>
 
              <li>
                 <a class="dropdown-item" 
-            asp-controller="AdminInnmeldinger"
+            asp-area=""
+            asp-controller="AdminUsers"
             asp-action="List">
-            Alle innmeldinger</a>
+            All Users
+            </a>
             </li>
+            </ul>
+        </li>
 
                         }
 

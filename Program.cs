@@ -3,7 +3,10 @@ using Webapp1.Data;
 using Webapp1.Repositories;
 using Microsoft.AspNetCore.Identity;
 
-var builder = WebApplication.CreateBuilder(args);
+
+
+var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -30,6 +33,7 @@ builder.Services.Configure<IdentityOptions>(Options =>
 builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<IInnmeldingerRepository, InnmeldingerRepository>();
 builder.Services.AddScoped<IImageRepository, CloudinaryImageRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 
