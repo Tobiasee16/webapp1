@@ -1,13 +1,28 @@
 version: '3.8'
 
 services:
-  webapp1:
+  webapp:
     image: webapp1:latest
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3306:3306"
+      - "5001:5000" # Maps port 5000 on the host to port 5000 in the container
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server;localhost;Port3307;Database=mywebappdb;User=root;Password=bruh;
+    depends_on:
+      - mariadb # Ensures MariaDB starts before the webapp
+
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    ports:
+      - "3307:3306" # Maps MariaDB's default port to the host
+    environment:
+      MYSQL_ROOT_PASSWORD: bruh # Root password
+      MYSQL_DATABASE: webapp1db # Initial database
+      MYSQL_USER: webappuser # Additional user
+      MYSQL_PASSWORD: securepassword # Password for the additional user
+
     
