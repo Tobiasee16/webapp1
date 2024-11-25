@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 @model Webapp1.Models.ViewModels.AddInnmeldingRequest
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
 <div class="<bg-secondary> <bg-opacity-10> py-2">
     <div class="container">
@@ -13,22 +15,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
     <form method="post">
 
         <div class="mb-3">
-            <label class="form-label">Heading</label>
+            <label class="form-label">Rapport</label>
             <input type="text" class="form-control" id="heading" asp-for="Heading"> 
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Page Title</label>
+            <label class="form-label">Emne</label>
             <input type="text" class="form-control" id="pageTitle" asp-for="PageTitle"> 
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Content</label>
-           <textarea class="form-control" id="content" asp-for="Content" ></textarea>
+            <label class="form-label">Koordinater</label>
+           <textarea class="form-control" id="coordinates" asp-for="Content" ></textarea>
         </div>
 
+        <div id="map" style="height:auto 500px; width: 100%; border:0cap 1px solid #ddd; margin-bottom:auto 20px;"></div>
+
         <div class="mb-3">
-            <label class="form-label">Short Description</label>
+            <label class="form-label">Beskrivelse</label>
             <input type="text" class="form-control" id="shortDescription" asp-for="ShortDescription"> 
         </div>
 
@@ -50,12 +54,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Published Date</label>
+            <label class="form-label">Publisert dato</label>
             <input type="text" class="form-control" id="publishedDate" asp-for="PublishedDate"> 
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Author</label>
+            <label class="form-label">Navn</label>
             <input type="text" class="form-control" id="author" asp-for="Author"> 
         </div>
 
@@ -119,4 +123,47 @@ using Microsoft.AspNetCore.Mvc.Rendering;
         featureImageUploadElement.addEventListener('change', uploadFeatureImage);
 
     </script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Initialiser kartet
+        var map = L.map('map').setView([59.911491, 10.757933], 13); // Senter på Oslo
+
+        // Legg til OpenStreetMap-fliser
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Variabel for markøren
+        var marker;
+
+        // Håndter klikk på kartet for å sette en markør
+        map.on('click', function (e) {
+            if (marker) {
+                map.removeLayer(marker); // Fjern eksisterende markør
+            }
+            marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map); // Legg til ny markør
+            document.getElementById('coordinates').value = e.latlng.lat + ", " + e.latlng.lng; // Oppdater koordinatfeltet
+        });
+
+        // Håndter skjema-innsending
+        document.getElementById('correctionForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // Forhindre standard innsending
+            var coordinates = document.getElementById('coordinates').value;
+            var existingError = document.getElementById('existingError').value;
+            var correction = document.getElementById('correction').value;
+
+            if (!coordinates || !existingError || !correction) {
+                alert("Vennligst fyll ut alle felt!");
+                return;
+            }
+
+            alert("Rettelse rapportert!\n\nKoordinater: " + coordinates +
+                "\nEksisterende feil: " + existingError +
+                "\nForeslått rettelse: " + correction);
+
+            // Her kan du legge til en funksjon for å sende data til serveren via en POST-forespørsel.
+        });
+    });
+</script>
 }
