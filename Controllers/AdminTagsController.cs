@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Webapp1.Repositories;
 using Microsoft.AspNetCore.Authorization;
 
+
 namespace Webapp1.Controllers
 {
     public class AdminTagsController : Controller
@@ -28,6 +29,11 @@ namespace Webapp1.Controllers
         [ActionName("Add")]
         public async Task<IActionResult> Add(AddTagRequest addTagRequest)
         {
+            ValidateAddTagRequest(addTagRequest);
+            if (ModelState.IsValid == false)
+            {
+                return View();
+            }
             // Mapping AddTagRequest to Tag domain model
             var tag = new Tag
             {
@@ -42,8 +48,15 @@ namespace Webapp1.Controllers
 
         [HttpGet]
         [ActionName("List")]
-        public async Task<IActionResult> List()   
+        public async Task<IActionResult> List(
+            string? searchQuery,
+            string? sortBy,
+            string? sortDirection)          
         {
+            ViewBag.SearchQuery = searchQuery;
+            ViewBag.SortBy = sortBy;
+            ViewBag.SortDirection = sortDirection;
+            
             // Use dcContext to read tags from the database
             var tags = tagRepository.GetAllAsync();
 
@@ -103,6 +116,18 @@ namespace Webapp1.Controllers
                 //show error notification
             return RedirectToAction("Edit", new { id = editTagRequest.Id });
          }
+
+        private void ValidateAddTagRequest(AddTagRequest request)
+        {
+            if (request.Name is not null && request.DisplayName is not null)
+            {
+                if (request.Name == request.DisplayName)
+                {
+                    ModelState.AddModelError("Name", "Name and Display Name must be different");
+                }
+               
+            }
+        }
        
     }
 }
