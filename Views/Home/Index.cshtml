@@ -1,8 +1,54 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "Kart";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+
+<!-- Leaflet JavaScript -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+<div class="container mt-5">
+    <h1 class="text-success">Kartverket</h1>
+    <p>Her finner du kart for området.</p>
+
+    <!-- Kartbeholder -->
+    <div id="map" style="height: 500px; width: 100%; border: 1px solid #ddd;"></div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Initialiser kartet
+        var map = L.map('map').setView([59.911491, 10.757933], 13); // Senter på Oslo
+
+        // Legg til OpenStreetMap-fliser
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Håndter klikk på kartet for å legge til en ny markør
+        map.on('click', function (e) {
+            var newMarker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+            newMarker.bindPopup("Ny markør på: " + e.latlng.lat + ", " + e.latlng.lng).openPopup();
+        });
+
+        // Legg til tegneverktøy med Leaflet.draw for å kunne tegne figurer interaktivt
+        var drawnItems = new L.FeatureGroup();
+        map.addLayer(drawnItems);
+
+        var drawControl = new L.Control.Draw({
+            edit: {
+                featureGroup: drawnItems
+            }
+        });
+        map.addControl(drawControl);
+
+        // Håndter tegne-event for å legge til figurer som markører, linjer og polygoner
+        map.on('draw:created', function (event) {
+            var layer = event.layer;
+            drawnItems.addLayer(layer);
+            layer.bindPopup("Ny figur lagt til.");
+        });
+    }); // Lukk document.addEventListener
+
+</script>
